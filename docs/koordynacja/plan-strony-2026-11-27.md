@@ -120,7 +120,7 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-20 | zrobione (czeka recenzja Z-23) | AS | 27.11 15:05 | strona/z04-z07-z20-formalnosci @ c76182b8 (4 commity Claude noreply, tylko docs: docs/teksty/prawne/ pl+en ×3 + dowody.md D-1…D-15); tests.yml 46019852421 success na tym SHA. Do weta (AS): własna polityka strony; licencja: wyszukiwarki i asystenci AI mogą indeksować/cytować z linkiem, zakaz zbiorów do uczenia modeli; hosting jako kategoria; rysunek tylko w wydruku. Otwarte: wstawki {{administrator}}/{{kontakt}} (Z-33; e-mail nie w repo), [DO KONSULTACJI] PP-1–3, R-1–3, L-1–2; Z-52: brak Set-Cookie |
 | Z-28 | odpada (Z-08) | — | 27.11 | — |
 | Z-06 | zrobione | AT | 27.11 16:14 | strona/z06-badanie-zasiegu @ 72d53ce2 (docs/badanie-zasiegu-2026-11-27.md: A1–A15, B1–B9, KO-130); tests.yml 46029824334 success |
-| Z-22 | zrobione (recenzja kodu i Z-23 w toku) | AZ | 27.11 17:02 | strona/z22-szablony @ 3288ff36 (docs/teksty/szablony-stron.md, src/szablony.mjs); tests.yml 46034976157 success; do weta SZ-1…SZ-6 |
+| Z-22 | zrobione (recenzja kodu i Z-23 w toku) | AZ | 27.11 17:02 | strona/z22-szablony @ 5340a4f5 (docs/teksty/szablony-stron.md, src/szablony.mjs; poprawki po recenzji kodu); tests.yml 46040735422 success; do weta SZ-1…SZ-7 |
 | Z-23 | w toku | BB | 27.11 17:20 | — |
 | Z-24 | zrobione (po recenzji Z-25) | AU | 27.11 17:28 | strona/z24-nazwy-pl @ 17400396 (docs/nazwy/pl.json 708/708 po 227 poprawkach, STAN.md: 16 nazw do zgłoszenia aplikacji, wyjątki dla Z-32); tests.yml 46040595906 success |
 | Z-25 | zrobione — PRZYJĘTE Z POPRAWKAMI (227) → AU wprowadza | AY | 27.11 17:05 | strona/z25-recenzja-nazw-pl @ b9ec7694 (docs/nazwy/recenzja-pl-2026-11-27.md); tests.yml 46037174854 success |
