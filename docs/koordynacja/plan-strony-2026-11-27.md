@@ -110,7 +110,8 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-01 | zrobione | AR | 27.11 14:55 | techniqueatlas strona/z01-przeglad-galezi @ efc69dd6 (Claude noreply, 1 plik docs/przeglad-galezi-2026-11-27.md); tests.yml 46017953936 success na tym SHA. Wynik: 12 gałęzi; 7 przodkami main, tender-thompson w main pod innym SHA, stan-wskazowka i filtr-audytu-s6 nieaktualne → do usunięcia przez właściciela; zachować figury/petla-jednokierunkowa (→ Z-02a) i claude/amazing-cori-vqo0qi (→ Z-09) |
 | Z-02a | otwarte (KO-129) | AQ po Z-03b | 27.11 | — |
 | Z-09 | zrobione | AW | 27.11 16:11 | strona/z09-sprzatanie-testow @ bd0baf21 (Claude noreply, 7 plików); tests.yml 46030015001 success; recenzja niezależna PRZYJĘTE Z UWAGAMI (2× NISKIE uruchom-testy.mjs → backlog) |
-| Z-10 | w toku | AX | 27.11 16:05 | — |
+| Z-10 | zrobione | AX | 27.11 16:58 | strona/z10-makiety @ eb4a9ca9 (docs/design/makiety-2026-11-27/, arkusze/porownanie-*.png); tests.yml 46035081018 success |
+| Z-11 | czeka na właściciela | — | 27.11 17:02 | — |
 | Z-04 | zrobione | AS | 27.11 14:40 | techniqueatlas strona/z04-z07-z20-formalnosci @ ad5264c4 (autor Claude noreply; docs/strona-kroki-wlasciciela.md, 10 kroków, 12 stron pomocy czytanych 27.11, luki K1–K8); tests.yml na końcowym SHA AS — do potwierdzenia |
 | Z-05 | zrobione — kroki 1–8 (Enforce HTTPS: właściciel 27.11 ~16:00 „gotowe”) | — | 27.11 16:03 | curl: http://www.techniqueatlas.com → 301, https → 404 GitHub (brak wdrożenia, oczekiwane) |
 | Z-07 | zrobione | AS | 27.11 14:47 | docs/znaki-towarowe-metoda.md @ c76182b8 (z decyzją Z-08) |
