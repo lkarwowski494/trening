@@ -68,3 +68,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | AR (korekta) | — | — | 2,93 (odczyt przy archiwizacji) | 21,6 | — | — | poprzedni wiersz 2,75 przed końcem tury |
 | AS | M8 build opus-5-5 | pułap 20 | 6,66 | 29,3 | 14:33 → 14:33 → 14:40 (Z-04) → 15:04 (46019852421) → 15:08 | 2 min (prompt, WG-19) | 3 zadania, ok. 32 min |
 | AV | 04 build zawężona | — | 4,07 | 23,7 | 14:33 → 14:33 → ~15:10 → 15:25 → 15:30 | ok. 30 min: potwierdzenie właściciela w sesji AV | Z-21, docs |
+| AW | 08 build | 6 | 0,80 | 14 | 15:41 → 15:49 → ~16:00 → 16:11 → 16:20 | 10 min: recenzja | Z-09 |
