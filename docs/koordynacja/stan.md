@@ -756,3 +756,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - ~13:25 UTC 28.11: właściciel, słowa: „scaliłem PR #9” — źródło ui w przekładzie na main.
 - 13:30 UTC 28.11: BQ2 PRZEKAZANIE — d6ee491 tests.yml 46146411051 SUCCESS (głowa 190f564 tylko stan); przegląd ramki 0,57, szablonów 0,09, countLine 0,23 USD; API łącznie 28,13/80. KO-150. Następca BQ3: scalenie z scalenie-prawne 6885fd1 + main e97094e, przekład kluczy ui 33 jęz., przegląd countLine.
 - 13:35 UTC 28.11: BQ3 utworzona (session_01T66VBvc6Ckwh2FbSLARkn4); BQ2 zarchiwizowana (6,19 USD).
+- 13:30 UTC 28.11: BQ3 a) scalenie 6885fd1 + main e97094e bez konfliktów w kodzie (tylko STAN-AGENTA, wydatki.json), testy celowane 340/340; API łącznie wg wydatki.json 29,72/80 USD (różnica do sum raportów — scalenie wpisów z 3 gałęzi; do sprawdzenia przy odbiorze). b) w toku.
