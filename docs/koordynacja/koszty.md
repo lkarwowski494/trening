@@ -86,3 +86,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | BK | 04 audit | 12 | 6,47 | ~29 | 04:05 → 04:03 → ~04:30 → — → 05:00 | — | Z-40 |
 | BL | 08 build | 12 | 4,57 | ~32 | 05:00 → 04:59 → ~06:00 → 07:39 → 08:08 | ~1 h: testy lokalne + 2 przebiegi CI | poprawki Z-40 |
 | BP | 08 fix | 8 | 1,43 | ~17 | 09:50 → 09:51 → 09:56 → 10:20 → 10:40 (recenzja całej gałęzi w toku) | 24 min: przebieg tests.yml | 2 testy plakietki (nowe konto) |
+| BQ | 09 build | 10 | 7,56 | 37 | 10:16 → 10:18 → 10:19 → (bb10f4d CI w toku) → przekazanie 11:26 | 8 przebiegów CI, 5 anulowanych (WG-21) | liczba mnoga, z32, el, ramka |
