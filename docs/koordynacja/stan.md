@@ -31,6 +31,11 @@ Migracja na M9 (D-056) z koordynatora bez roli: session_01T66VByJCWCao1Hw3is68Cy
 - Czeka na start: sesja programisty W-23 tryb „zamień” w scripts/asc/zrzuty.mjs (właściciel ~20:30 UTC „Skrypt z trybem „zamień” (B)”; pierwszy zapis na jednym języku, usuwanie każdorazowo za Approve) — start po AH (te same skrypty ASC).
 - Zapis metadanych: właściciel 2026-11-15 ~20:20 UTC, wybór: „Po sprawdzeniu AG (Recommended)” — koordynator uruchamia asc-metadane `zapis` po odbiorze AG (zadanie 3), właściciel klika Approve release.
 
+## Teraz (09:30 UTC 28.11 — PRZEKAZANIE NA NOWE KONTO właściciela; szczegóły i plan: docs/koordynacja/przekazanie-nowe-konto-2026-11-28.md; sekcje „Teraz” niżej są historyczne)
+- strona/integracja-start @ 72947750 = wszystkie przyjęte prace; w toku: BM (przeklad-api), BN (plakietka-apple), BO (przeklad-poprawki) — sesje zapisują STAN-AGENTA.md i oddają PRZEKAZANIE; nowy koordynator otwiera nowe sesje od plików stanu.
+- Następne: odbiór BM/BN/BO → PR przeklad-poprawki → Z-41 audyt → pytania do właściciela → Z-50 publikacja ukryta → Z-60/61 Google.
+- Koszt API: 25,68/80 USD. Przypomnienia koordynatora …ofp4DMHDkCDaVVg49P usunięte przy przekazaniu.
+
 ## Teraz (15:15 UTC 27.11 — PRZEKAZANIE E6 od …odof6Z5fDRqyshbgvd, kontekst 36,7%; sekcje „Teraz” niżej są historyczne)
 - Cel: start strony techniqueatlas wg planu właściciela `docs/koordynacja/plan-strony-2026-11-27.md` (P-1…P-12 dosłownie; tabela „Stan” na końcu pliku = odhaczanie do czasu docs/55 w repo strony; od scalenia Z-00 Stan zmienia koordynator w docs/55 w commicie scalenia).
 - Zrobione 27.11: Z-01 (AR, efc69dd6), Z-04/Z-07/Z-20 (AS, c76182b8; Z-20 czeka recenzji Z-23), Z-08 (właściciel: „Nie robimy tego.” — KO-128), Z-05 kroki 1–7 (DNS OK, „DNS check successful”, certyfikat TLS w toku). Gałęzie wyników NIE scalone do main strony (scalenie po przeglądzie; push na main strony bywa blokowany klasyfikatorem → PR, scala właściciel jak PR #5).
@@ -692,3 +697,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-28 09:08 | koordynator | BN session_01BM51oguYeBvtb3GFz5zRqY utworzona. | kontrola 09:12 |
 | 2026-11-28 09:12 | BM / koordynator | tests.yml czerwony na przeklad-api od 14e559f: z32-nazwy:39 zakładał de bez nazw → KO-140, BM poprawia test. | CI → scalenie |
 | 2026-11-28 09:16 | koordynator | BO session_01BM51offEepfPGhQnBqd5tv utworzona (zmiany workflowów → PR do main z publikacją). Aktywne: BH (marketing), BM, BN, BO. | kontrola |
+| 2026-11-28 09:30 | koordynator | Właściciel: limit konta → przekazanie koordynacji na nowe konto. Sesje BM/BN/BO/BH poproszone o zapis stanu i PRZEKAZANIE. Plik przekazania: docs/koordynacja/przekazanie-nowe-konto-2026-11-28.md. | nowy koordynator (nowe konto) |
