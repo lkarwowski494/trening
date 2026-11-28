@@ -177,7 +177,23 @@ Następca NIE dołącza biblioteki prompts (add_repo blokowany przez klasyfikato
 
 Koszty sesji: get_session każdej przed archiwizacją → koszty.md.
 
-## Plan 24 h (UTC, 11.11; aktualizacja 05:00)
+## Plan do startu strony (UTC, aktualizacja 28.11 09:55; źródło stanu zadań: plan-strony-2026-11-27.md „Stan” — docs/55 w repo strony NIEAKTUALNE, do uzupełnienia)
+| Kiedy | Co | Kto | Zależy od | Od właściciela |
+|---|---|---|---|---|
+| 28.11 ~10:30 | ff integracja-start ← przeklad-api (Z-26/Z-27 przez API) | koordynator | CI 46132213306 | — |
+| 28.11 ~10:30 | docs/55: Stan zgodny z rzeczywistością (zrobione z dowodami) | koordynator | ff | — |
+| 28.11 ~11:00 | plakietka: naprawa 2 testów → recenzja → scalenie | BP + audytor | CI | — |
+| 28.11 ~11:00 | przeklad-poprawki: recenzja → PR do main | audytor, koordynator | — | scalenie PR (2 min) |
+| 28.11 ~11:00–12:30 | BQ: liczba mnoga cs/hr/lv/sl + test z32 bez cichego skip (KO-141) | 08 fix | ff | — |
+| 28.11 po PR | nazwy el przez API (tylko_szacuj → przebieg ≤ 6 USD) + przegląd el | 09 build | PR scalony, BQ | — |
+| 28.11 ~12:30–13:30 | Z-35 przegląd zbudowanych stron przez API (pl, en + próbka) | 09 + API | wszystko scalone | — |
+| 28.11 ~13:30–16:00 | Z-41 audyt gotowości (07 audit opus/high) | sesja | Z-35 | — |
+| 28.11 ~16:00–19:00 | poprawki z Z-41 | 08 fix | Z-41 | — |
+| równolegle od teraz | pytania prawne (12), przegląd tekstów prawnych przez człowieka?, administrator/kontakt, og:image | właściciel | — | ~15 min |
+| po poprawkach | Z-50 zgoda → PR integracja-start → main → Z-51 pages.yml → Z-52 sprawdzenie żywej | 10, 07 | Z-41 + odpowiedzi | zgoda + scalenie |
+| dzień później | Z-60/61 Google → Z-62 → Z-63 Search Console + Bing → Z-64 link ASC/apps4brew → Z-65 | 08, 10, M9 | Z-52 | zgoda, ~20 min, zgoda |
+
+## Plan 24 h (UTC, 11.11; HISTORYCZNY)
 | Kiedy | Co | Kto | Zależy od | Od właściciela |
 |---|---|---|---|---|
 | 07:05 | start L: W-02 zadania figur przed 1.1 (docs/49) + KO-038 (jest-ponow SIGTERM, audit-m1-050) | sesja 08 | KO-036 (pułap doby od 07:00) | — |
