@@ -1,0 +1,14 @@
+# Sesja BP: naprawa 2 czerwonych testów na gałęzi plakietki App Store — techniqueatlas
+Koordynator: session_01T66VBzThnXikLhgMY71EzY (nowe konto właściciela; raporty, pytania i PRZEKAZANIE tylko przez send_message do tego ID). Gałąź stanu koordynatora: `koordynacja` w repo trening (tylko do odczytu; nie musisz jej czytać — polecenie masz w całości tutaj).
+
+1. Rola: 08-programista w trybie fix. Prompt roli jest w twojej pierwszej wiadomości po linii `=== PROMPT ROLI ===`; przeczytaj go w całości. Biblioteki prompts nie dołączasz.
+2. Start: repo lkarwowski494/techniqueatlas, gałąź `strona/plakietka-apple` @ 59eedd6 (inny HEAD: zgłoś). Fetch w płytkim klonie: `git fetch origin refs/heads/strona/plakietka-apple` i FETCH_HEAD. Przeczytaj `STAN-AGENTA.md` na gałęzi (sekcja BN — poprzednia sesja, zatrzymana przy zmianie konta właściciela). Instalacja: `npm ci && npm run dane`. Tożsamość commitów: jak w dotychczasowej historii gałęzi (git log), trailery Co-Authored-By i Claude-Session.
+3. Zadania (znaleziska z tests.yml run 46129185148 na d80df79; to jedyne 2 realne porażki, trzecia „not ok” to oczekiwany TODO Z-33):
+   - CI113-1: `tests/sprzatanie.test.mjs:42` — `tests/z40-plakietka.test.mjs` tworzy katalog tymczasowy bezpośrednio przez mkdtemp; ma używać `tmpDir()/tmpDist()` z `tests/pomoc.mjs`. Gotowe: sprzatanie.test zielony, z40-plakietka 6/6, asercje z40-plakietka bez zmian.
+   - CI113-2: `tests/straznik-dane.test.mjs:35` — zbudowana strona zawiera `assets/plakietka/ZRODLA.json` (plik danych w dist). Naprawa w budowaniu (ZRODLA.json zostaje w repo jako źródło pochodzenia, ale nie trafia do dist), NIE w teście strażnika. Gotowe: strażnik zielony; test, że ZRODLA.json nie ma w dist, a SVG są (test czerwony przed poprawką).
+   - Po obu: `npm test` w całości (ciężki, ~30 min; jeden przebieg naraz) albo — jeśli kontener na to nie pozwala — push i zielony tests.yml na twoim SHA. Uzupełnij STAN-AGENTA.md (sekcja BP nad BN).
+4. Zakazy: nie scalasz do `strona/integracja-start` ani `main`, nie tworzysz i nie archiwizujesz sesji, nie zmieniasz workflowów, nie zmieniasz założeń istniejących testów (strażnicy zostają bez zmian; zmiana założenia testu wymaga cytatu zgody właściciela — nie masz jej), nigdy --no-verify ani force-push, nie pytasz właściciela bezpośrednio (bez AskUserQuestion). STOP-y roli i punkt czyszczenia zamieniasz na raport do koordynatora.
+5. Decyzje: tryb „analogia, do weta” — najpierw analogia w historii repo strony; zapisz jako propozycję w raporcie (koordynator nadaje numer KO).
+6. Kontekst i koszt: od 30% okna kończysz krok, zapisujesz stan w STAN-AGENTA.md, push, PRZEKAZANIE. Pułap 8 USD; próg STOP 10,4 USD.
+7. Push: zbiorczo, raz po obu poprawkach.
+8. Raporty (≤ 10 linii, send_message do koordynatora): po pierwszej poprawce krótko; na końcu PRZEKAZANIE: SHA, run tests.yml z wynikiem, pliki, propozycje decyzji, koszt, otwarte.
