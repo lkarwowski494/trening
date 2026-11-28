@@ -83,3 +83,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | BC | 08 build | 12 | 5,09 | ~33 | 17:52 → 17:34 → ~18:56 → 19:47 → 20:48 | 60 min: blokada startu (WG-20) | mechanizm API |
 | BI | 08 build | 15 | 6,18 | ~36 | 22:20 → 22:13 → 23:09 → 01:28 → 01:55 | ~1 h: testy lokalne + CI (2 przebiegi) | Z-32, Z-33 |
 | BJ | 08 build | 15 | 5,90 | ~36 | 01:55 → 01:42 → ~02:40 → 03:57 → 04:05 | 20 min: recenzja + poprawka KO-137 | Z-34 |
+| BK | 04 audit | 12 | 6,47 | ~29 | 04:05 → 04:03 → ~04:30 → — → 05:00 | — | Z-40 |
