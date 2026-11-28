@@ -85,3 +85,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | BJ | 08 build | 15 | 5,90 | ~36 | 01:55 → 01:42 → ~02:40 → 03:57 → 04:05 | 20 min: recenzja + poprawka KO-137 | Z-34 |
 | BK | 04 audit | 12 | 6,47 | ~29 | 04:05 → 04:03 → ~04:30 → — → 05:00 | — | Z-40 |
 | BL | 08 build | 12 | 4,57 | ~32 | 05:00 → 04:59 → ~06:00 → 07:39 → 08:08 | ~1 h: testy lokalne + 2 przebiegi CI | poprawki Z-40 |
+| BP | 08 fix | 8 | 1,43 | ~17 | 09:50 → 09:51 → 09:56 → 10:20 → 10:40 (recenzja całej gałęzi w toku) | 24 min: przebieg tests.yml | 2 testy plakietki (nowe konto) |
