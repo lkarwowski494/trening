@@ -1,0 +1,14 @@
+# Sesja BQ2 (następca BQ): domknięcie przeglądów tłumaczeń i licznika — techniqueatlas
+Koordynator: session_01T66VBzThnXikLhgMY71EzY (raporty, pytania i PRZEKAZANIE tylko przez send_message do tego ID).
+
+1. Rola: 09-lokalizacja w trybie build. Prompt roli jest w twojej pierwszej wiadomości po linii `=== PROMPT ROLI ===`; przeczytaj go w całości. Biblioteki prompts nie dołączasz.
+2. Start: repo lkarwowski494/techniqueatlas, gałąź `strona/liczba-mnoga-el` @ bb10f4d (fetch w płytkim klonie: `git fetch origin refs/heads/strona/liczba-mnoga-el`, FETCH_HEAD; inny HEAD — zgłoś). Przeczytaj `STAN-AGENTA.md` (sekcja BQ na górze — poprzednik). Najpierw scal do gałęzi `strona/integracja-start` @ b5d8db4 (zawiera plakietkę, PR #7, odhaczony plan; konflikt w STAN-AGENTA.md rozwiąż zachowując oba stany). `npm ci && npm run dane`. Tożsamość commitów jak w historii, trailery Co-Authored-By i Claude-Session. Mechanizm przekładu: docs/przeklad/README.md; workflowy uruchamiaj tylko z main (klucz API tylko dla kodu z main).
+3. Zadania:
+   a) Przegląd API ramki (33 języki) jest już ZLECONY przez poprzednika (workflow przeglad-tlumaczen, zrodlo=ramka; szac. 3,80 USD) — odbierz wynik (artefakt / --wznow wg README), nałóż poprawki skryptem, zaksięguj koszt w docs/przeklad/wydatki.json. Gotowe: poprawki nałożone, testy ramki zielone, koszt zaksięgowany.
+   b) Przegląd API szablonów cs, hr, sl, lv po ostatnim przekładzie (≤ 6 USD), nałożenie, księgowanie. Gotowe: tests/liczba-mnoga.test.mjs zielony dla 35 języków.
+   c) KO-147 P3: `ui.countLine` w 24 językach jest napisem bez form liczby mnogiej (poprawny tylko dla 708). Najpierw test czerwony (każdy napis z liczbą w src/ui i szablonach ma formy wg Intl.PluralRules), potem zamiana na frazę z formami i przekład przez API (po KO-146 mechanizm daje właściwe kategorie; szac. ~0,2 USD). Gotowe: test zielony dla 35 języków.
+   d) Push zbiorczo RAZ na koniec (każdy push = 25-min przebieg CI; zastąpione przebiegi koordynator anuluje). Zielony tests.yml na twoim SHA. STAN-AGENTA.md: sekcja BQ2 na górze.
+4. Zakazy: nie scalasz do `strona/integracja-start` ani `main`, nie tworzysz i nie archiwizujesz sesji, nie zmieniasz workflowów, nie zmieniasz założeń istniejących testów, nigdy --no-verify ani force-push, nie pytasz właściciela (bez AskUserQuestion). STOP-y roli i punkt czyszczenia → raport do koordynatora. Nie dotykasz tekstów prawnych (docs/teksty/prawne — robi sesja BR) ani akapitu o wsparciu.
+5. Decyzje: tryb „analogia, do weta”; propozycje w raporcie. KO-147 (do weta): P1 wszystkie 57 poprawek el nałożone; P2 źródło ramki w docs/teksty/ramka jako kopia src/ui (pl, en) pilnowana testem; P3 jak w c).
+6. Kontekst i koszt: od 30% okna: stan, push, PRZEKAZANIE. Pułap sesji 8 USD (STOP 10,4). Budżet API łącznie 80 USD (wydane 27,24 + BR).
+7. Raporty (≤ 10 linii, send_message): PRZEKAZANIE: SHA, run tests.yml, run-y API i koszt, pliki, propozycje decyzji, otwarte.
