@@ -115,7 +115,8 @@ Role, modele, etapy i nazwy plików to rekomendacje sesji planowania, nie decyzj
 | Z-12 | zrobione | BD (po AX) | 27.11 18:47 | strona/z10-makiety @ 24a19270 (docs/design/system/: design-spec.md, tokeny, komponenty, szablony, ikona, podgląd); tests.yml 46048957875 success |
 | Z-31 | zrobione | BF | 27.11 21:58 | strona/z31-wyglad @ e6bc66ad; tests.yml 46071430442 success; recenzja kodu bez KRYT/WYS; FF do integracja-start |
 | Z-32, Z-33 | zrobione | BI | 28.11 01:28 | strona/z32-z33 @ e15d336; tests.yml 46090643290 success; recenzja kodu bez KRYT/WYS; scalone do integracja-start @ 7a8dcb4 |
-| Z-34 | w toku | BJ | 28.11 01:55 | — |
+| Z-34 | zrobione | BJ | 28.11 03:57 | strona/z34-zasieg @ 7a227e3; tests.yml 46103668314 success; recenzja kodu + KO-137; integracja-start @ 7a227e3 |
+| Z-40 | w toku | BK | 28.11 04:05 | — |
 | Z-30 | zrobione | BE | 27.11 19:49 | strona/z30-testy @ 8720007 (docs/55-strategia-testow-wdrozenia.md; 40 testów todo Z-31 11/Z-32 6/Z-33 8/Z-34 15); tests.yml 46056881459 success; FF do integracja-start |
 | Z-04 | zrobione | AS | 27.11 14:40 | techniqueatlas strona/z04-z07-z20-formalnosci @ ad5264c4 (autor Claude noreply; docs/strona-kroki-wlasciciela.md, 10 kroków, 12 stron pomocy czytanych 27.11, luki K1–K8); tests.yml na końcowym SHA AS — do potwierdzenia |
 | Z-05 | zrobione — kroki 1–8 (Enforce HTTPS: właściciel 27.11 ~16:00 „gotowe”) | — | 27.11 16:03 | curl: http://www.techniqueatlas.com → 301, https → 404 GitHub (brak wdrożenia, oczekiwane) |
