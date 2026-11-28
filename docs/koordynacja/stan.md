@@ -699,3 +699,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 | 2026-11-28 09:16 | koordynator | BO session_01BM51offEepfPGhQnBqd5tv utworzona (zmiany workflowów → PR do main z publikacją). Aktywne: BH (marketing), BM, BN, BO. | kontrola |
 | 2026-11-28 09:30 | koordynator | Właściciel: limit konta → przekazanie koordynacji na nowe konto. Sesje BM/BN/BO/BH poproszone o zapis stanu i PRZEKAZANIE. Plik przekazania: docs/koordynacja/przekazanie-nowe-konto-2026-11-28.md. | nowy koordynator (nowe konto) |
 - 09:35 UTC 28.11: raporty przekazania BN (59eedd6) i BM (fd03e38) dopisane do pliku przekazania; CI obu w toku; BO i BH bez raportu; prompt przekazania zapisany w pliku przekazania.
+- 09:40 UTC 28.11: raport BH (6c07eb4f) dopisany do pliku przekazania; BO bez raportu.
