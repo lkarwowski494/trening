@@ -84,3 +84,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | BI | 08 build | 15 | 6,18 | ~36 | 22:20 → 22:13 → 23:09 → 01:28 → 01:55 | ~1 h: testy lokalne + CI (2 przebiegi) | Z-32, Z-33 |
 | BJ | 08 build | 15 | 5,90 | ~36 | 01:55 → 01:42 → ~02:40 → 03:57 → 04:05 | 20 min: recenzja + poprawka KO-137 | Z-34 |
 | BK | 04 audit | 12 | 6,47 | ~29 | 04:05 → 04:03 → ~04:30 → — → 05:00 | — | Z-40 |
+| BL | 08 build | 12 | 4,57 | ~32 | 05:00 → 04:59 → ~06:00 → 07:39 → 08:08 | ~1 h: testy lokalne + 2 przebiegi CI | poprawki Z-40 |
