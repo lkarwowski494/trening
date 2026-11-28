@@ -88,3 +88,4 @@ Przegląd przepływu 2026-11-10 14:00: największa strata ok. 2 h × 4 sesje —
 | BP | 08 fix | 8 | 1,43 | ~17 | 09:50 → 09:51 → 09:56 → 10:20 → 10:40 (recenzja całej gałęzi w toku) | 24 min: przebieg tests.yml | 2 testy plakietki (nowe konto) |
 | BQ | 09 build | 10 | 7,56 | 37 | 10:16 → 10:18 → 10:19 → (bb10f4d CI w toku) → przekazanie 11:26 | 8 przebiegów CI, 5 anulowanych (WG-21) | liczba mnoga, z32, el, ramka |
 | BR | 08 build | 12 | 16,74 | 57 | 10:22 → 10:25 → ~10:45 → 8212264 success 12:20 → przekazanie 12:37 | przekroczony próg STOP (15,6) i kontekst 57% między kontrolami (ostatnia kontrola BR 12:16: 22%) | prawne: 2 strony, przekład + przegląd API |
+| BQ2 | 09 build | 8 | 6,19 | 31 | 11:29 → 11:35 → ~11:50 → d6ee491 success 13:20 → przekazanie 13:24 | kolejka CI ~10 min + przebiegi ~30 min | przeglądy ramki/szablonów, countLine, źródło ui |
