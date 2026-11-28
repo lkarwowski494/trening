@@ -758,3 +758,4 @@ Straight Raises on Incline Bench (delt: kolana do tyłu, siedzisko przenika 6 cm
 - 13:35 UTC 28.11: BQ3 utworzona (session_01T66VBvc6Ckwh2FbSLARkn4); BQ2 zarchiwizowana (6,19 USD).
 - 13:30 UTC 28.11: BQ3 a) scalenie 6885fd1 + main e97094e bez konfliktów w kodzie (tylko STAN-AGENTA, wydatki.json), testy celowane 340/340; API łącznie wg wydatki.json 29,72/80 USD (różnica do sum raportów — scalenie wpisów z 3 gałęzi; do sprawdzenia przy odbiorze). b) w toku.
 - 13:38 UTC 28.11: ff strona/integracja-start → 6885fd1 (teksty prawne BR; tests.yml 46146716600 success). BQ3 pracuje na liczba-mnoga-el (już scalone z 6885fd1 + main e97094e).
+- 13:42 UTC 28.11: ff integracji do 6885fd1 ODRZUCONE (non-fast-forward) — 6885fd1 zbudowane od 074e3f8 zamiast b5d8db4 (WG-23). Bez szkody: gałąź BQ3 liczba-mnoga-el @ d22f69b zawiera b5d8db4, 6885fd1 i main e97094e — integracja przesunie się do głowy BQ3 po recenzji i zielonym CI. integracja zostaje b5d8db4.
